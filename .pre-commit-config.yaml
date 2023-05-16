@@ -1,0 +1,6 @@
+repos:
+- repo: git@github.com:awslabs/git-secrets.git
+  rev: master # Get the latest from: https://github.com/gruntwork-io/pre-commit/releases
+  hooks:
+    -  id: git-secrets
+      name: Git Secrets
