@@ -4,3 +4,9 @@ repos:
   hooks:
     -  id: git-secrets
       name: Git Secrets
+
+  - repo: git@github.com:antonbabenko/pre-commit-terraform.git
+    rev: master 
+    hooks:
+      - id: terraform_tflint
+        name: Terraform validate with tflint
