@@ -21,6 +21,9 @@ jobs:
           role-to-assume: arn:aws:iam::637448446398:role/github-actions-oidc
           aws-region: eu-central-1
           role-session-name: Githubmigrationdeploy
+      
+      -name: terraform setup
+        uses: hashicorp/setup-terraform@v1
       - name: terraform initilization
         run: terraform init   
 
