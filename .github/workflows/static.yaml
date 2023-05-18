@@ -9,8 +9,17 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: read
-      pull-requests: write
+      packages: write
+      id-token: write
     steps:
+      - name: Clone our repository
+        uses: actions/checkout@v3
+      - name: AWS Authentication
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          role-to-assume: arn:aws:iam::637448446398:oidc-provider/token.actions.githubusercontent.com
+          aws-region: eu-central-1
+          role-session-name: Githubmigrationdeploy
       - name: terraform initilization
         run: terraform init   
 
