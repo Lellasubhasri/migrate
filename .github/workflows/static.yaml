@@ -2,7 +2,7 @@ name: migrationDeployment
 on:
   push:
     branches:
-      main
+      - main
 
 jobs:
   terraform-deploy:
@@ -22,10 +22,10 @@ jobs:
           aws-region: eu-central-1
           role-session-name: Githubmigrationdeploy
       
-      -name: terraform setup
+      - name: terraform setup
         uses: hashicorp/setup-terraform@v1
         
-      - name: terraform initilization
+      - name: terraform initialization
         run: terraform init   
 
       - name: terraform planning
