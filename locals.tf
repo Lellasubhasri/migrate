@@ -1,5 +1,5 @@
 locals {
-  availability-zones      = slice(data.aws_availability_zones.available.names, 0, var.number_of_azs)
+  availability_zones      = slice(data.aws_availability_zones.available.names, 0, var.number_of_azs)
 
   public_subnet_cidr      = cidrsubnet(var.vpc_cidr, 6, 4)
   private_subnet_cidr     = cidrsubnet(var.vpc_cidr, 7, 10)

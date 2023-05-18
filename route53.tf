@@ -6,7 +6,7 @@ resource "aws_route53_zone" "nsrec" {
   }
 }
 
-resource "aws_route53_record" "privateA_rec" {
+resource "aws_route53_record" "privatea_rec" {
   zone_id = aws_route53_zone.nsrec.zone_id
   name    = "resolve-test"
   type    = "A"

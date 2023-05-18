@@ -61,13 +61,13 @@ resource "aws_lb_listener" "front_end" {
       status_code  = "200"
     }
 }
-    #target_group_arn = aws_lb_target_group.front_end.arn
+    
   tags = {
     Name = "Port443_listener"
   }
 }
 
-resource "aws_route53_record" "privateArec" {
+resource "aws_route53_record" "privatearec" {
     zone_id = data.aws_route53_zone.route53.id
     name = "resolve"
     type = "A"
