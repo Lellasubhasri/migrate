@@ -5,22 +5,23 @@ on:
       main
 
 jobs:
-  runs-on: ubuntu-latest
-  permissions:
-    contents: read
-    pull-requests: write
-  steps:
-    - name: terraform initilization
-      run: terraform init   
+  terraform-deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: write
+    steps:
+      - name: terraform initilization
+        run: terraform init   
 
-    - name: terraform planning
-      run: terraform plan
+      - name: terraform planning
+        run: terraform plan
 
-    - name: terraform applying
-      run: terraform apply -auto-approve       
+      - name: terraform applying
+        run: terraform apply -auto-approve       
       
-    - name: terraform validating
-      run: terraform validate
+      - name: terraform validating
+        run: terraform validate
 
-    - name: terraform format
-      run: terraform fmt
+      - name: terraform format
+        run: terraform fmt
