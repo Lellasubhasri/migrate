@@ -25,10 +25,10 @@ jobs:
         run: terraform init   
 
       - name: terraform planning
-        run: terraform plan
+        run: terraform plan -lock=false
 
       - name: terraform applying
-        run: terraform apply -auto-approve       
+        run: terraform apply -auto-approve -lock=false     
       
       - name: terraform validating
         run: terraform validate
