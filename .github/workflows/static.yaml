@@ -18,7 +18,7 @@ jobs:
       - name: AWS Authentication
         uses: aws-actions/configure-aws-credentials@v2
         with:
-          role-to-assume: arn:aws:iam::637448446398:oidc-provider/token.actions.githubusercontent.com
+          role-to-assume: arn:aws:iam::637448446398:role/github-actions-oidc
           aws-region: eu-central-1
           role-session-name: Githubmigrationdeploy
       - name: terraform initilization
