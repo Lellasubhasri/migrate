@@ -1,3 +1,8 @@
+on:
+  pull:
+    branches:
+      - main
+
 name: Infracost Actions
 description: cloud cost estimates for terraform in pull requests
 
