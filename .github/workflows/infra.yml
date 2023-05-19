@@ -1,11 +1,10 @@
+name: Infracost Actions
+  description: cloud cost estimates for terraform in pull requests
+
 on:
   pull_request
     branches:
       - main
-
-name: Infracost Actions
-description: cloud cost estimates for terraform in pull requests
-
 author: infracost
 branding:
   icon: trending-up
