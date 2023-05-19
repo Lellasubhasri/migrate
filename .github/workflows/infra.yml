@@ -4,48 +4,54 @@ on:
   pull_request
     branches:
       - main
-author: infracost
-branding:
-  icon: trending-up
-  color: yellow
-  inputs:
-    api-key:
-      description: Your Infracost API key. It can be retrieved by running `infracost configure get api_key`. We recommend using your same API key in all environments. If you don't have one, download Infracost (https://www.infracost.io/docs/#quick-start) and run `infracost auth login` to get a free API key.
-      required: true
-    path:
-      description: The path that will be passed to `infracost breakdown`. This may be a path to a Terraform plan JSON or a Terraform project.
-      required: true
-    behavior:
-      description: The behavior to use when posting cost estimate comments. Must be one of 'update' | 'delete-and-new' | 'hide-and-new' | 'new'.
-      required: false
-      default: update
-  runs:
-    using: "composite"
-    steps:
-      - name: Checkout base branch
-        uses: actions/checkout@v3
-        with:
-          ref: '${{ github.event.pull_request.base.ref }}'    
+# author: infracost
+# branding:
+#   icon: trending-up
+#   color: yellow
 
-      - name: Setup Infracost
-        uses: infracost/actions/setup@v2
-        with:
-          api-key: ${{ inputs.api_key }}  
+steps:
+  - name: clone repository
+    uses: actions/checkout@v3
+    with:
+      ref: '${{github.event.pull_request.base.ref}}'
+  # inputs:
+  #   api-key:
+  #     description: Your Infracost API key. It can be retrieved by running `infracost configure get api_key`. We recommend using your same API key in all environments. If you don't have one, download Infracost (https://www.infracost.io/docs/#quick-start) and run `infracost auth login` to get a free API key.
+  #     required: true
+  #   path:
+  #     description: The path that will be passed to `infracost breakdown`. This may be a path to a Terraform plan JSON or a Terraform project.
+  #     required: true
+  #   behavior:
+  #     description: The behavior to use when posting cost estimate comments. Must be one of 'update' | 'delete-and-new' | 'hide-and-new' | 'new'.
+  #     required: false
+  #     default: update
+  # runs:
+  #   using: "composite"
+  #   steps:
+  #     - name: Checkout base branch
+  #       uses: actions/checkout@v3
+  #       with:
+  #         ref: '${{ github.event.pull_request.base.ref }}'    
 
-      - name: Generate Infracost cost estimate baseline
-        run: | 
-          infracost breakdown --path=examples/terraform-directory/code \ --format=json \ --out-file=/tmp/infracost-base.json 
+  #     - name: Setup Infracost
+  #       uses: infracost/actions/setup@v2
+  #       with:
+  #         api-key: ${{ inputs.api_key }}  
 
-      - uses: actions/checkout@v3
-      - name: Run Infracost
-        run: |
-          infracost breakdown --path=examples/terraform-directory/code \
-                            --format=json \
-                            --compare-to=/tmp/infracost-base.json \
-                            --out-file=/tmp/infracost.json  
-      - name: Post Infracost comment
-        run: |
-          infracost comment github --path=/tmp/infracost.json \ --repo=$GITHUB_REPOSITORY \ --github-token=${{github.token}} \ --pull-request=${{github.event.pull_request.number}} \ --behavior=${{inputs.behavior}}
+  #     - name: Generate Infracost cost estimate baseline
+  #       run: | 
+  #         infracost breakdown --path=examples/terraform-directory/code \ --format=json \ --out-file=/tmp/infracost-base.json 
+
+  #     - uses: actions/checkout@v3
+  #     - name: Run Infracost
+  #       run: |
+  #         infracost breakdown --path=examples/terraform-directory/code \
+  #                           --format=json \
+  #                           --compare-to=/tmp/infracost-base.json \
+  #                           --out-file=/tmp/infracost.json  
+  #     - name: Post Infracost comment
+  #       run: |
+  #         infracost comment github --path=/tmp/infracost.json \ --repo=$GITHUB_REPOSITORY \ --github-token=${{github.token}} \ --pull-request=${{github.event.pull_request.number}} \ --behavior=${{inputs.behavior}}
 
 
              
