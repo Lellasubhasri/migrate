@@ -1,30 +1,34 @@
 name: Infracost Actions
+
 on:
-  pull_request
+  pull_request:
     branches:
       - main
+
 jobs:
   terraform-deploy:
     runs-on: ubuntu-latest
     permissions:
       contents: read
       packages: write
-      id-token: write   
+      id-token: write
+
     env:
-    TF_ROOT: dev     
+      TF_ROOT: dev
+
     steps:
       - name: clone repository
         uses: actions/checkout@v3
         with:
-          ref: '${{github.event.pull_request.base.ref}}'  
+          ref: ${{ github.event.pull_request.base.ref }}
 
       - name: Setup Infracost
         uses: infracost/actions/setup@v2
         with:
           api-key: ${{ secrets.INFRACOST_API_KEY }}
-      
+
       - name: Generate Infracost cost estimate baseline
         run: |
           infracost breakdown --path=${TF_ROOT} \
                               --format=json \
-                              --out-file=/tmp/infracost-base.json    
+                              --out-file=/tmp/infracost-base.json

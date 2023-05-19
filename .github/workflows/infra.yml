@@ -1,19 +1,19 @@
-name: Infracost Actions
+# name: Infracost Actions
   #description: cloud cost estimates for terraform in pull requests
-on:
-  pull_request
-    branches:
-      - main
+# on:
+#   pull_request
+#     branches:
+#       - main
 # author: infracost
 # branding:
 #   icon: trending-up
 #   color: yellow
 
-steps:
-  - name: clone repository
-    uses: actions/checkout@v3
-    with:
-      ref: '${{github.event.pull_request.base.ref}}'
+# steps:
+#   - name: clone repository
+#     uses: actions/checkout@v3
+#     with:
+#       ref: '${{github.event.pull_request.base.ref}}'
   # inputs:
   #   api-key:
   #     description: Your Infracost API key. It can be retrieved by running `infracost configure get api_key`. We recommend using your same API key in all environments. If you don't have one, download Infracost (https://www.infracost.io/docs/#quick-start) and run `infracost auth login` to get a free API key.
