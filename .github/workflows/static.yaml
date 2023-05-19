@@ -1,41 +1,41 @@
-name: migrationDeployment
-on:
-  push:
-    branches:
-      - main
+# name: migrationDeployment
+# on:
+#   push:
+#     branches:
+#       - main
 
-jobs:
-  terraform-deploy:
-    runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      packages: write
-      id-token: write
-    steps:
-      - name: Clone our repository
-        uses: actions/checkout@v3
+# jobs:
+#   terraform-deploy:
+#     runs-on: ubuntu-latest
+#     permissions:
+#       contents: read
+#       packages: write
+#       id-token: write
+#     steps:
+#       - name: Clone our repository
+#         uses: actions/checkout@v3
 
-      - name: AWS Authentication
-        uses: aws-actions/configure-aws-credentials@v2
-        with:
-          role-to-assume: arn:aws:iam::637448446398:role/github-actions-oidc
-          aws-region: eu-central-1
-          role-session-name: Githubmigrationdeploy
+#       - name: AWS Authentication
+#         uses: aws-actions/configure-aws-credentials@v2
+#         with:
+#           role-to-assume: arn:aws:iam::637448446398:role/github-actions-oidc
+#           aws-region: eu-central-1
+#           role-session-name: Githubmigrationdeploy
       
-      - name: terraform setup
-        uses: hashicorp/setup-terraform@v1
+#       - name: terraform setup
+#         uses: hashicorp/setup-terraform@v1
         
-      - name: terraform initialization
-        run: terraform init   
+#       - name: terraform initialization
+#         run: terraform init   
 
-      - name: terraform planning
-        run: terraform plan -lock=false
+#       - name: terraform planning
+#         run: terraform plan -lock=false
 
-      - name: terraform applying
-        run: terraform apply -auto-approve -lock=false     
+#       # - name: terraform applying
+#       #   run: terraform apply -auto-approve -lock=false     
       
-      - name: terraform validating
-        run: terraform validate
+#       - name: terraform validating
+#         run: terraform validate
 
-      - name: terraform format
-        run: terraform fmt
+#       - name: terraform format
+#         run: terraform fmt
