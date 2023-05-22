@@ -28,7 +28,7 @@ jobs:
       - name: Setup Infracost
         uses: infracost/actions/setup@v2
         with:
-          api-key: ${{ secrets.INFRACOST_API_KEY }}
+          api-key: ${{ secrets.INFRACOST }}
 
       - name: Generate Infracost cost estimate baseline
         run: |
