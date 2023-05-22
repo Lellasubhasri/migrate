@@ -63,6 +63,8 @@ jobs:
           framework: terraform 
           directory: ${{ env.WORKING-DIRECTORY }}
           soft_fail: true
+          download_external_modules: false
+          quiet: true
 
   tflint-check:
     runs-on:  ubuntu-latest
