@@ -40,12 +40,20 @@ jobs:
       - name: terraform format
         run: terraform fmt
 
-  checkov:     
+name: checkov
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  checkov:
     runs-on: ubuntu-latest
-    permissions:
-      packages: write
-      contents: write
-      id-token: write
+
     steps:
       - name: Checkout repo
         uses: actions/checkout@v3
@@ -59,12 +67,17 @@ jobs:
         id: checkov
         uses: bridgecrewio/checkov-action@master
         with:
-          # quiet : true
-          framework: terraform 
-          directory: ${{ env.WORKING-DIRECTORY }}
+          framework: terraform
           soft_fail: true
           download_external_modules: false
           quiet: true
+          output_format: sarif
+          log_level: WARNING
+          container_user: 0
+
+      - name: Print Checkov results
+        run: echo "${{ steps.checkov.outputs.checkov_results }}"
+
 
   tflint-check:
     runs-on:  ubuntu-latest
