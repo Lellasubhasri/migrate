@@ -11,10 +11,10 @@ on:
 jobs:
   terraform-deploy:
     runs-on: ubuntu-latest
-    permissions: write-all
-      # contents: read
-      # packages: write
-      # id-token: write
+    permissions: #write-all
+      contents: read
+      packages: write
+      id-token: write
 
     env:
       TF_ROOT: dev
