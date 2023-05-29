@@ -12,6 +12,7 @@ module "vpc" {
 
   enable_nat_gateway = true
   single_nat_gateway = true
+  create_database_subnet_group = false
 
   tags = {
     Terraform = "true"

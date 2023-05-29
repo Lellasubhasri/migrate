@@ -7,8 +7,7 @@ locals {
   database_subnet_cidr    = cidrsubnet(var.vpc_cidr, 7, 13)
   #staging_area_subnet_cidr = cidrsubnet(local.private_subnet_cidr,2, 2)
 
-  private_random_ip = "192.168.0.235"
+  #private_random_ip = "192.168.0.235"
 
-#   vpc_cidr = "10.0.0.0/16"
-# number_of_azs = "2"
+
 }
