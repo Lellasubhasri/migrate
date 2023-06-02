@@ -21,6 +21,8 @@ resource "aws_db_instance" "rdspgres" {
   skip_final_snapshot  = true
   backup_retention_period = 7
   copy_tags_to_snapshot = true
+  storage_encrypted      = true
+  #kms_key_id             = "aws/rds"  
   #enable_point_in_time_recovery = true
  
  dynamic "restore_to_point_in_time" {
