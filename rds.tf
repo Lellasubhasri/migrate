@@ -12,8 +12,8 @@ resource "aws_db_instance" "rdspgres" {
   engine               = "postgres"
   engine_version       = "14.6"
   instance_class       = "db.t3.micro"
-  username             = "foo"
-  password             = "foobarbaz"
+  username             = var.username
+  password             = var.password
   parameter_group_name = "default.postgres14"
   maintenance_window   = "Mon:00:00-Mon:03:00"
   backup_window        = "10:00-12:00"
@@ -22,6 +22,7 @@ resource "aws_db_instance" "rdspgres" {
   backup_retention_period = 7
   copy_tags_to_snapshot = true
   storage_encrypted      = true
+  vpc_security_group_ids = [aws_security_group.targetserver.id]
   #kms_key_id             = "aws/rds"  
   #enable_point_in_time_recovery = true
  
@@ -35,7 +36,12 @@ resource "aws_db_instance" "rdspgres" {
     }
   }
   #subnet_id = module.vpc.database_subnets[0]
+
   db_subnet_group_name = aws_db_subnet_group.dbsg.id
+
+  tags = {
+    name = "migrate-rds"
+  }
 }
 
 

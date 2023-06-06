@@ -8,6 +8,6 @@ locals {
   #staging_area_subnet_cidr = cidrsubnet(local.private_subnet_cidr,2, 2)
 
   #private_random_ip = "192.168.0.235"
-
-
+  vpc_cidr3 = "11.0.0.0/16"
+  vpc_cidr4 = "174.0.0.0/16"
 }

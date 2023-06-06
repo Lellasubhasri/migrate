@@ -35,4 +35,3 @@ resource "aws_dms_replication_instance" "targetdms" {
   ]
 }
 
-

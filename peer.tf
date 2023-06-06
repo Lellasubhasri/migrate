@@ -39,7 +39,7 @@ data "aws_route_tables" "target_routetable" {
 }
 
 resource "aws_route" "peer-target" {
-  count                   = length(data.aws_route_tables.target_routetable.ids)
+  count                     = length(data.aws_route_tables.target_routetable.ids)
   route_table_id            = tolist(data.aws_route_tables.target_routetable.ids)[count.index]
   destination_cidr_block    = local.vpc_cidr3
   vpc_peering_connection_id = aws_vpc_peering_connection.peering.id

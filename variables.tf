@@ -20,3 +20,12 @@ variable "restore_to_point_in_time" {
   ))
   default = []
 }
+
+variable "username" {
+  type = string
+  description = "username"
+}
+variable "password" {
+  type = string
+  description = "password"
+}
