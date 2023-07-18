@@ -16,7 +16,7 @@ resource "aws_dms_endpoint" "test" {
   }
 }
 data "aws_instance" "data_server" {
-  instance_id = "i-0c82884bfd3788141"
+  instance_id = "i-01ec5757a6ffafa60"
   filter {
     name   = "image-id"
     values = ["ami-0ab1a82de7ca5889c"]

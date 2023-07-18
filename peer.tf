@@ -9,7 +9,7 @@ resource "aws_vpc_peering_connection" "peering" {
   vpc_id = module.vpc.vpc_id
   peer_vpc_id = data.aws_vpc.onprem_vpc.id
   auto_accept = true
-  peer_owner_id = "637448446398"
+  peer_owner_id = "296572906806"
 
     accepter {
     allow_remote_vpc_dns_resolution = true
